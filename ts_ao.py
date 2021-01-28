@@ -41,19 +41,14 @@ from scipy.signal import butter
 #    return y
 
 ds = xr.open_dataset("ao_weekly_1983-2018.nc")
-#print(ds.time)
 ds = ds.resample(time='QS-DEC').mean()
 ds = ds.isel(time=slice(None,None,4))
 
-print(ds)
-
 z = ds.ao.values
-
-print(z)
 
 fig, ax = plt.subplots(1,1, figsize=(7,4))
 
-ax.plot(ds.time, z, 'ko-')
+ax.plot(ds.time, z, 'ko-', ms=3, lw=1)
 
 ax.grid(True, color='grey', ls=':')
 
